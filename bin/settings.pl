@@ -7,6 +7,7 @@ $eis_puppet_release = '8';
 
 %pathmap = (
   'SunOS-5.9'  =>  "/opt/sfw/gcc-3/bin:/usr/ccs/bin:/usr/local/bin:/usr/bin:/bin:/usr/sfw/bin",
+  'SunOS-5.8'  =>  "/opt/csw/gcc3/bin:/opt/csw/bin:/usr/ccs/bin:/usr/local/bin:/usr/bin:/bin",
   'SunOS-5.10' =>  "/usr/sfw/bin:/usr/ccs/bin:/usr/bin:/bin",
   'SunOS-5.11' =>  "/usr/sfw/bin:/usr/ccs/bin:/usr/bin:/bin",
 );
@@ -250,7 +251,7 @@ $target = $build_dir . "/packages/eisuppet-${platform}-${eis_puppet_version}-${e
 #fi
 #EOT
 
-if ($ostype eq 'solaris-9') {
+if ($ostype eq 'solaris-9' || $ostype eq 'solaris-8') {
   $postinstall .= <<EOT;
 if [ ! -f /etc/init.d/puppetd ] ; then
   cp /opt/puppet/puppetd /etc/init.d/puppetd

@@ -312,6 +312,9 @@ unless (-d $build_dir) {
 unless (-d "${build_dir}/tgzs") {
   mkdir "${build_dir}/tgzs", 0755 ;
 }
+unless (-d "${build_dir}/packages") {
+  mkdir "${build_dir}/packages", 0755 ;
+}
 unless (-d "${top}/packages") {
   mkdir "${top}/packages", 0755 ;
 }
@@ -347,15 +350,13 @@ if ($packit eq "yes") {
   if ($os =~ /solaris|sunos/i) {
     @pkgtype = ('solaris');
     system "cp ${top}/fpmtop/etc/puppet/puppet.conf ${prefix}";
-    if ($ostype eq 'solaris-9') {
-      system "cp ${top}/fpmtop/init.d/Solaris/puppetd ${prefix}/puppetd";
+    system "cp ${top}/fpmtop/$osver/etc/init.d/puppetd ${prefix}/puppetd";
+
+    if ($ostype eq 'solaris-10' || $ostype eq 'solaris-11') {
+      system "cp ${top}/fpmtop/$osver/init.d/smf/puppetd.xml ${prefix}/puppetd.xml";
+      system "cp ${top}/fpmtop/$osver/init.d/smf/svc-puppetd ${prefix}/svc-puppetd";
+      system "cp ${top}/fpmtop/$osver/init.d/smf/puppetd.xml ${top}/fpmtop/";
     }
-    if ($ostype eq 'solaris-10') {
-      system "cp ${top}/fpmtop/init.d/Solaris/puppetd ${prefix}/puppetd";
-      system "cp ${top}/fpmtop/init.d/Solaris/smf/puppetd.xml ${prefix}/puppetd.xml";
-      system "cp ${top}/fpmtop/init.d/Solaris/smf/svc-puppetd ${prefix}/svc-puppetd";
-    }
-    system "cp ${top}/fpmtop/init.d/Solaris/smf/puppetd.xml ${top}/fpmtop/";
     package_solaris;
   } else {
 

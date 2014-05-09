@@ -22,6 +22,7 @@ There are several reasons for this:
 
 * RedHat 5 x86_64, i386
 * RedHat 6 x86_64, i386
+* Solaris 8 sparc
 * Solaris 9 sparc
 * Solaris 10 x86_64, sparc
 * Solaris 11.1 x86_64, sparc
@@ -53,6 +54,14 @@ The following components are used.
 * perl
 * fpm
 * rpmbuild
+
+### Solaris 8 sparc:
+    Will use CSW packages if available. CSW is no longer updated for Solaris 8.
+    The latest release is dublin so configure mirror in /etc/opt/csw/pkgutil.conf to point at http://mirror.opencsw.org/opencsw/dublin
+
+    Install required packages using /opt/csw/bin/pkgutil -i gcc3 gmake git wget gtar
+
+    Note that Solaris tar fails for some tasks so unless you have gnu-tar in your path, a quick workaround is to link /opt/csw/bin/tar to /opt/csw/bin/gtar
 
 ### Solaris 10 x86:
     /usr/sfw/bin/gcc 3.4.3, patched with http://www.openssl.org/~appro/values.c to get usable openssl libs
