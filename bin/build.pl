@@ -353,9 +353,9 @@ if ($packit eq "yes") {
     system "cp ${top}/fpmtop/$osver/etc/init.d/puppetd ${prefix}/puppetd";
 
     if ($ostype eq 'solaris-10' || $ostype eq 'solaris-11') {
-      system "cp ${top}/fpmtop/$osver/init.d/smf/puppetd.xml ${prefix}/puppetd.xml";
-      system "cp ${top}/fpmtop/$osver/init.d/smf/svc-puppetd ${prefix}/svc-puppetd";
-      system "cp ${top}/fpmtop/$osver/init.d/smf/puppetd.xml ${top}/fpmtop/";
+      system "cp ${top}/fpmtop/$osver/etc/init.d/smf/puppetd.xml ${prefix}/puppetd.xml";
+      system "cp ${top}/fpmtop/$osver/etc/init.d/smf/svc-puppetd ${prefix}/svc-puppetd";
+      system "cp ${top}/fpmtop/$osver/etc/init.d/smf/puppetd.xml ${top}/fpmtop/";
     }
     package_solaris;
   } else {
